@@ -129,6 +129,8 @@
             gap: 4rem;
             align-items: center;
             min-height: 100vh;
+            position: relative;
+            overflow: visible;
         }
 
         .hero-content {
@@ -137,18 +139,19 @@
 
         .hero-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-primary), var(--accent));
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, var(--accent), var(--text-primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            letter-spacing: -1px;
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
             line-height: 1.8;
@@ -156,10 +159,10 @@
 
         .hero-badge {
             display: inline-block;
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(212, 175, 55, 0.15);
             border: 1px solid var(--accent);
             color: var(--accent);
-            padding: 0.6rem 1.4rem;
+            padding: 0.7rem 1.5rem;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 600;
@@ -167,6 +170,18 @@
             animation: slideDown 0.6s ease forwards;
             opacity: 0;
             animation-delay: 0.2s;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            animation: slideDown 0.6s ease forwards;
+            opacity: 0;
+            animation-delay: 0.1s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .hero-buttons {
@@ -201,32 +216,37 @@
             position: relative;
             animation: fadeInRight 0.8s ease forwards;
             animation-delay: 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .image-wrapper {
             position: relative;
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             margin: 0 auto;
         }
 
         .image-bg {
             position: absolute;
-            inset: -20px;
-            background: linear-gradient(135deg, var(--accent), rgba(212, 175, 55, 0.2));
-            border-radius: 20px;
-            opacity: 0.3;
-            filter: blur(20px);
+            inset: -30px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(100, 100, 150, 0.15), rgba(212, 175, 55, 0.1));
+            border-radius: 30px;
+            opacity: 0.8;
+            filter: blur(25px);
             z-index: -1;
+            animation: pulse 4s ease-in-out infinite;
         }
 
         .image-frame {
             position: relative;
-            border: 2px solid var(--accent);
-            border-radius: 15px;
+            border: 3px solid var(--accent);
+            border-radius: 20px;
             overflow: hidden;
-            aspect-ratio: 9/12;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, #2a2a3a, #1a1a2a);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.1), inset 0 0 30px rgba(212, 175, 55, 0.05);
         }
 
         .image-frame img {
@@ -234,15 +254,50 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            filter: brightness(1.1);
         }
 
         .image-frame::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.1) 100%);
+            background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.08) 100%);
             pointer-events: none;
             z-index: 1;
+        }
+
+        .hero-label {
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            background: var(--accent);
+            color: #000;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transform: rotate(15deg);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+            animation: bounce 2s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: rotate(15deg) translateY(0);
+            }
+            50% {
+                transform: rotate(15deg) translateY(-10px);
+            }
         }
 
         /* ===== SERVICES SECTION ===== */
@@ -684,12 +739,26 @@
             }
 
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.85rem;
             }
 
             .hero-image {
                 order: -1;
                 margin-bottom: 2rem;
+            }
+
+            .image-wrapper {
+                max-width: 300px;
+            }
+
+            .hero-label {
+                top: -15px;
+                right: 5px;
+                font-size: 0.75rem;
             }
 
             .nav-links {
@@ -733,19 +802,21 @@
     <!-- ===== HERO SECTION ===== -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge">✨ AI Conversation Expert</div>
-            <h1>Build Intelligent Conversations That Convert</h1>
-            <p>I create sophisticated voicebots and chatbots that engage your customers 24/7, automate bookings, and transform your business operations with cutting-edge AI technology.</p>
+            <div class="hero-subtitle">AI That Actually Gets It</div>
+            <div class="hero-badge">✨ Not Your Average Bot</div>
+            <h1>Bots That Talk the Talk & Walk the Walk</h1>
+            <p>Tired of boring customer service? I build voicebots and chatbots so smart and conversational, your customers might forget they're talking to AI. We're talking 24/7 booking automation, zero-fluff conversations, and conversions that actually go up. Magic? Nope. Just really good AI. 🎯</p>
             <div class="hero-buttons">
-                <a href="#contact" class="cta-btn">Start Your Project</a>
-                <a href="#projects" class="secondary-btn">View Case Studies →</a>
+                <a href="#contact" class="cta-btn">Let's Chat (We're Good at It)</a>
+                <a href="#projects" class="secondary-btn">See What We've Built →</a>
             </div>
         </div>
         <div class="hero-image">
             <div class="image-wrapper">
+                <div class="hero-label">AI Founder</div>
                 <div class="image-bg"></div>
                 <div class="image-frame">
-                    <img src="founder_image.png" alt="AI Conversation Specialist">
+                    <img src="founder_image.png" alt="AI Bot Master">
                 </div>
             </div>
         </div>
